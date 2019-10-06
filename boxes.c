@@ -60,7 +60,16 @@ int main()
 
 void initData(void)
 {
-
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            if ( map[i][j] == 2 ) {
+                x = i;
+                y = j;
+            } else if ( map [i][j] == 3) {
+                boxes++;
+            }
+        }
+    }
 }
 
 void drawMap(void)
