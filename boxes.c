@@ -6,13 +6,13 @@
 // #define WIDTH 8
 // #define HEIGHT 8
 
-void initData(void); // åˆå§‹åŒ–æ•°æ®
-void drawMap(void); // ç»˜åˆ¶ç”»é¢
-void moveUp(void); // å‘ä¸Šç§»åŠ¨
-void moveDown(void); // å‘ä¸‹ç§»åŠ¨
-void moveLeft(void); // å‘å·¦ç§»åŠ¨
-void moveRight(void); // å‘å³ç§»åŠ¨
-void move(char direction); // ç§»åŠ¨
+void initData(void); // ³õÊ¼»¯Êı¾İ
+void drawMap(void); // »æÖÆ»­Ãæ
+void moveUp(void); // ÏòÉÏÒÆ¶¯
+void moveDown(void); // ÏòÏÂÒÆ¶¯
+void moveLeft(void); // Ïò×óÒÆ¶¯
+void moveRight(void); // ÏòÓÒÒÆ¶¯
+void move(char direction); // ÒÆ¶¯
 
 int map[8][8] = {
         {0, 0, 1, 1, 1, 0, 0, 0},
@@ -23,14 +23,14 @@ int map[8][8] = {
         {1, 1, 1, 1, 3, 1, 0, 0},
         {0, 0, 0, 1, 4, 1, 0, 0},
         {0, 0, 0, 1, 1, 1, 0, 0}
-}; // å¯é€šè¿‡ä¸‰ç»´æ•°ç»„å®ç°å¤šå…³å¡
+}; // ¿ÉÍ¨¹ıÈıÎ¬Êı×éÊµÏÖ¶à¹Ø¿¨
 /**
- * 0 è¡¨ç¤ºç©º
- * 1 è¡¨ç¤ºå¢™
- * 2 è¡¨ç¤ºäºº
- * 3 è¡¨ç¤ºç®±å­
- * 4 è¡¨ç¤ºç›®çš„åœ°
- * 5 è¡¨ç¤ºå·²å®Œæˆçš„ç®±å­
+ * 0 ±íÊ¾¿Õ
+ * 1 ±íÊ¾Ç½
+ * 2 ±íÊ¾ÈË
+ * 3 ±íÊ¾Ïä×Ó
+ * 4 ±íÊ¾Ä¿µÄµØ
+ * 5 ±íÊ¾ÒÑÍê³ÉµÄÏä×Ó
  */
 
 int x = 0;
@@ -38,7 +38,7 @@ int y = 0;
 
 int boxes = 0;
 
-// int course = 1; // å¯é€šè¿‡ä¸‰ç»´æ•°ç»„å®ç°å¤šå…³å¡
+// int course = 1; // ¿ÉÍ¨¹ıÈıÎ¬Êı×éÊµÏÖ¶à¹Ø¿¨
 
 // int error = 0;
 
@@ -86,19 +86,19 @@ void drawMap(void)
                     printf("  ");
                     break;
                 case 1:
-                    printf("â– ");
+                    printf("¡ö");
                     break;
                 case 2:
-                    printf("â™€");
+                    printf("¡â");
                     break;
                 case 3:
-                    printf("â—†");
+                    printf("¡ô");
                     break;
                 case 4:
-                    printf("â—");
+                    printf("¡ñ");
                     break;
                 case 5:
-                    printf("â˜…");
+                    printf("¡ï");
                     break;
                     // default:
                     // printf("Error Happens!\n");
@@ -110,12 +110,12 @@ void drawMap(void)
     }
 } // Tested
 
-/** ç§»åŠ¨æ—¶çš„å¯èƒ½
- * å‰é¢æ˜¯å¢™
- * å‰é¢æ˜¯ç©ºç™½
- * å‰é¢æ˜¯ç®±å­ -- ç®±å­å‰é¢æ˜¯ 'å¢™' 'ç©ºç™½' 'ç®±å­' 'ç›®çš„åœ°' 'å®Œæˆçš„ç®±å­'
- * å‰é¢æ˜¯ç›®çš„åœ°
- * å‰é¢æ˜¯å®Œæˆçš„ç®±å­
+/** ÒÆ¶¯Ê±µÄ¿ÉÄÜ
+ * Ç°ÃæÊÇÇ½
+ * Ç°ÃæÊÇ¿Õ°×
+ * Ç°ÃæÊÇÏä×Ó -- Ïä×ÓÇ°ÃæÊÇ 'Ç½' '¿Õ°×' 'Ïä×Ó' 'Ä¿µÄµØ' 'Íê³ÉµÄÏä×Ó'
+ * Ç°ÃæÊÇÄ¿µÄµØ
+ * Ç°ÃæÊÇÍê³ÉµÄÏä×Ó
  */
 
 void moveUp(void)
