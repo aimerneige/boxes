@@ -1,9 +1,6 @@
 /**Something need to add
  * Only Win Permitted 
- * Can't Restart
  * Don't have more level/course
- * 
- * 
  */
 
 #include <stdio.h>
@@ -12,15 +9,6 @@
 
 // #define WIDTH 8
 // #define HEIGHT 8
-
-// void initData(void); // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-// void drawMap(void); // ï¿½ï¿½ï¿½Æ»ï¿½ï¿½ï¿½
-// void moveUp(void); // ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
-// void moveDown(void); // ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
-// void moveLeft(void); // ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
-// void moveRight(void); // ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
-// void move(char direction); // ï¿½Æ¶ï¿½
-// Just for remind an accident.
 
 void initData(void); // ³õÊ¼»¯Êý¾Ý
 void drawMap(void); // »æÖÆ»­Ãæ
