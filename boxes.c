@@ -124,5 +124,7 @@ void moveRight(void)
 }
 void move(char direction)
 {
-
+    switch (direction) {
+        case 'w'
+    }
 }
