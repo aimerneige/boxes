@@ -20,7 +20,7 @@
 // void moveLeft(void); // 锟斤拷锟斤拷锟狡讹拷
 // void moveRight(void); // 锟斤拷锟斤拷锟狡讹拷
 // void move(char direction); // 锟狡讹拷
-// just for remind an accident
+// Just for remind an accident.
 
 void initData(void); // 初始化数据
 void drawMap(void); // 绘制画面
@@ -30,19 +30,20 @@ void moveLeft(void); // 向左移动
 void moveRight(void); // 向右移动
 void move(char direction); // 移动
 void mapRec(int x, int y); // 复原
+void restart(void); // 重启
 
 const int recMAP[8][8] = {
         {0, 0, 1, 1, 1, 0, 0, 0},
         {0, 0, 1, 4, 1, 0, 0, 0},
         {0, 0, 1, 0, 1, 1, 1, 1},
-        {1, 1, 1, 3, 0, 3, 4, 1},
-        {1, 4, 0, 3, 2, 1, 1, 1},
-        {1, 1, 1, 1, 3, 1, 0, 0},
+        {1, 1, 1, 0, 0, 0, 4, 1},
+        {1, 4, 0, 0, 0, 1, 1, 1},
+        {1, 1, 1, 1, 0, 1, 0, 0},
         {0, 0, 0, 1, 4, 1, 0, 0},
         {0, 0, 0, 1, 1, 1, 0, 0}
 }; // 地图的恢复，用于函数
 
-const int recMAP[8][8] = {
+const int resMAP[8][8] = {
         {0, 0, 1, 1, 1, 0, 0, 0},
         {0, 0, 1, 4, 1, 0, 0, 0},
         {0, 0, 1, 0, 1, 1, 1, 1},
@@ -62,7 +63,8 @@ int map[8][8] = {
         {1, 1, 1, 1, 3, 1, 0, 0},
         {0, 0, 0, 1, 4, 1, 0, 0},
         {0, 0, 0, 1, 1, 1, 0, 0}
-}; // 可通过三维数组实现多关卡
+}; // 用于更改及输出的动态地图
+// 可通过三维数组实现多关卡
 
 /**
  * 0 表示空
@@ -80,14 +82,10 @@ int boxes = 0;
 
 // int course = 1; // 可通过三维数组实现多关卡
 
-// int error = 0;
-
 int main()
 {
     char direction;
     initData();
-    printf("Press \"w a s d\" to move.\n");
-    // printf("Press \"w a s d\" to move and press r to restart.\n");
     drawMap();
     direction = getch();
     while ( boxes ) {
@@ -101,7 +99,6 @@ int main()
     return 0;
 }
 
-
 void initData(void)
 {
     for (int i = 0; i < 8; i++) {
@@ -109,7 +106,8 @@ void initData(void)
             if ( map[i][j] == 2 ) {
                 x = i;
                 y = j;
-            } else if ( map [i][j] == 3) {
+            }
+            if ( map [i][j] == 3) {
                 boxes++;
             }
         }
@@ -118,6 +116,7 @@ void initData(void)
 
 void drawMap(void)
 {
+    printf("Press \"w a s d\" to move.\nPress \"r\" to restart game.\n");
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             int temp = map[i][j];
@@ -146,22 +145,30 @@ void drawMap(void)
         }
         printf("\n");
     }
-} // Tested
+}
 
 void move(char direction)
 {
     switch (direction) {
         case 'w':
+        case 'W':
             moveUp();
             break;
         case 'a':
+        case 'A':
             moveLeft();
             break;
         case 's':
+        case 'S':
             moveDown();
             break;
         case 'd':
+        case 'D':
             moveRight();
+            break;
+        case 'r':
+        case 'R':
+            restart();
             break;
         default:
             direction = getch();
@@ -181,6 +188,12 @@ void move(char direction)
         * '已完成的箱子' （5）
  * 前面是目的地（4）
  * 前面是已完成的箱子（5）
+    * 箱子前面可能出现的情况
+        * '空白' （0）
+        * '墙' （1）
+        * '箱子' （3）
+        * '目的地' （4）
+        * '已完成的箱子' （5）
  */
 
 void moveUp(void)
@@ -193,7 +206,7 @@ void moveUp(void)
     ty = y;
     if ( map[tx][ty] == 0 ) {
         map[tx][ty] = 2;
-        map[x][y] = 0;
+        mapRec(x, y);
     } else if ( map[tx][ty] == 1 ) {
         return;
     } else if ( map[tx][ty] == 3 ) {
@@ -206,7 +219,7 @@ void moveUp(void)
         if ( map[ttx][tty] == 0 ) {
             map[ttx][tty] = 3;
             map[tx][ty] = 2;
-            map[x][y] = 0;
+            mapRec(x, y);
         } else if ( map[ttx][tty] == 1 ) {
             return;
         } else if ( map[ttx][tty] == 3 ) {
@@ -214,37 +227,250 @@ void moveUp(void)
         } else if ( map[ttx][tty] == 4 ) {
             map[ttx][tty] = 5;
             map[tx][ty] = 2;
-            map[x][y] = 0;
+            mapRec(x, y);
             boxes--;
-            // 锟斤拷位指锟斤拷锟?
         } else if ( map[ttx][tty] == 5 ) {
             return;
         }
     } else if ( map[tx][ty] == 4 ) {
-
+        map[tx][ty] = 2;
+        mapRec(x, y);
     } else if ( map[tx][ty] == 5 ) {
-
+        if ( tx == 0 ) {
+            return;
+        }
+        int ttx, tty;
+        ttx = tx - 1;
+        tty = ty;
+        if ( map[ttx][tty] == 0 ) {
+            map[ttx][tty] = 3;
+            map[tx][ty] = 2;
+            mapRec(x, y);
+            boxes++;
+        } else if ( map[ttx][tty] == 1 ) {
+            return;
+        } else if ( map[ttx][tty] == 3 ) {
+            return;
+        } else if ( map[ttx][tty] == 4 ) {
+            map[ttx][tty] = 5;
+            map[tx][ty] = 2;
+            mapRec(x, y);
+        } else if ( map[ttx][tty] == 5 ) {
+            return;
+        }
     }
-
-
 }
 
-//void moveDown(void)
+void moveDown(void)
 {
-
+    if (x == 7) {
+        return;
+    }
+    int tx, ty;
+    tx = x + 1;
+    ty = y;
+    if ( map[tx][ty] == 0 ) {
+        map[tx][ty] = 2;
+        mapRec(x, y);
+    } else if ( map[tx][ty] == 1 ) {
+        return;
+    } else if ( map[tx][ty] == 3 ) {
+        if ( tx == 7 ) {
+            return;
+        }
+        int ttx, tty;
+        ttx = tx + 1;
+        tty = ty;
+        if ( map[ttx][tty] == 0 ) {
+            map[ttx][tty] = 3;
+            map[tx][ty] = 2;
+            mapRec(x, y);
+        } else if ( map[ttx][tty] == 1 ) {
+            return;
+        } else if ( map[ttx][tty] == 3 ) {
+            return;
+        } else if ( map[ttx][tty] == 4 ) {
+            map[ttx][tty] = 5;
+            map[tx][ty] = 2;
+            mapRec(x, y);
+            boxes--;
+        } else if ( map[ttx][tty] == 5 ) {
+            return;
+        }
+    } else if ( map[tx][ty] == 4 ) {
+        map[tx][ty] = 2;
+        mapRec(x, y);
+    } else if ( map[tx][ty] == 5 ) {
+        if ( tx == 7 ) {
+            return;
+        }
+        int ttx, tty;
+        ttx = tx + 1;
+        tty = ty;
+        if ( map[ttx][tty] == 0 ) {
+            map[ttx][tty] = 3;
+            map[tx][ty] = 2;
+            mapRec(x, y);
+            boxes++;
+        } else if ( map[ttx][tty] == 1 ) {
+            return;
+        } else if ( map[ttx][tty] == 3 ) {
+            return;
+        } else if ( map[ttx][tty] == 4 ) {
+            map[ttx][tty] = 5;
+            map[tx][ty] = 2;
+            mapRec(x, y);
+        } else if ( map[ttx][tty] == 5 ) {
+            return;
+        }
+    }
 }
 
-//void moveLeft(void)
+void moveLeft(void)
 {
-
+    if (y == 0) {
+        return;
+    }
+    int tx, ty;
+    tx = x;
+    ty = y - 1;
+    if ( map[tx][ty] == 0 ) {
+        map[tx][ty] = 2;
+        mapRec(x, y);
+    } else if ( map[tx][ty] == 1 ) {
+        return;
+    } else if ( map[tx][ty] == 3 ) {
+        if ( tx == 0 ) {
+            return;
+        }
+        int ttx, tty;
+        ttx = tx;
+        tty = ty - 1;
+        if ( map[ttx][tty] == 0 ) {
+            map[ttx][tty] = 3;
+            map[tx][ty] = 2;
+            mapRec(x, y);
+        } else if ( map[ttx][tty] == 1 ) {
+            return;
+        } else if ( map[ttx][tty] == 3 ) {
+            return;
+        } else if ( map[ttx][tty] == 4 ) {
+            map[ttx][tty] = 5;
+            map[tx][ty] = 2;
+            mapRec(x, y);
+            boxes--;
+        } else if ( map[ttx][tty] == 5 ) {
+            return;
+        }
+    } else if ( map[tx][ty] == 4 ) {
+        map[tx][ty] = 2;
+        mapRec(x, y);
+    } else if ( map[tx][ty] == 5 ) {
+        if ( ty == 0 ) {
+            return;
+        }
+        int ttx, tty;
+        ttx = tx;
+        tty = ty - 1;
+        if ( map[ttx][tty] == 0 ) {
+            map[ttx][tty] = 3;
+            map[tx][ty] = 2;
+            mapRec(x, y);
+            boxes++;
+        } else if ( map[ttx][tty] == 1 ) {
+            return;
+        } else if ( map[ttx][tty] == 3 ) {
+            return;
+        } else if ( map[ttx][tty] == 4 ) {
+            map[ttx][tty] = 5;
+            map[tx][ty] = 2;
+            mapRec(x, y);
+        } else if ( map[ttx][tty] == 5 ) {
+            return;
+        }
+    }
 }
 
-//void moveRight(void)
+void moveRight(void)
 {
 
+    if (y == 7) {
+        return;
+    }
+    int tx, ty;
+    tx = x;
+    ty = y + 1;
+    if ( map[tx][ty] == 0 ) {
+        map[tx][ty] = 2;
+        mapRec(x, y);
+    } else if ( map[tx][ty] == 1 ) {
+        return;
+    } else if ( map[tx][ty] == 3 ) {
+        if ( ty == 7 ) {
+            return;
+        }
+        int ttx, tty;
+        ttx = tx;
+        tty = ty + 1;
+        if ( map[ttx][tty] == 0 ) {
+            map[ttx][tty] = 3;
+            map[tx][ty] = 2;
+            mapRec(x, y);
+        } else if ( map[ttx][tty] == 1 ) {
+            return;
+        } else if ( map[ttx][tty] == 3 ) {
+            return;
+        } else if ( map[ttx][tty] == 4 ) {
+            map[ttx][tty] = 5;
+            map[tx][ty] = 2;
+            mapRec(x, y);
+            boxes--;
+        } else if ( map[ttx][tty] == 5 ) {
+            return;
+        }
+    } else if ( map[tx][ty] == 4 ) {
+        map[tx][ty] = 2;
+        mapRec(x, y);
+    } else if ( map[tx][ty] == 5 ) {
+        if ( ty == 7 ) {
+            return;
+        }
+        int ttx, tty;
+        ttx = tx;
+        tty = ty + 1;
+        if ( map[ttx][tty] == 0 ) {
+            map[ttx][tty] = 3;
+            map[tx][ty] = 2;
+            mapRec(x, y);
+            boxes++;
+        } else if ( map[ttx][tty] == 1 ) {
+            return;
+        } else if ( map[ttx][tty] == 3 ) {
+            return;
+        } else if ( map[ttx][tty] == 4 ) {
+            map[ttx][tty] = 5;
+            map[tx][ty] = 2;
+            mapRec(x, y);
+        } else if ( map[ttx][tty] == 5 ) {
+            return;
+        }
+    }
 }
 
 void mapRec(int x, int y)
 {
     map[x][y] = recMAP[x][y];
+}
+
+void restart(void)
+{
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            map[i][j] = resMAP[i][j];
+        }
+    }
+    char direction;
+    initData();
+    direction = getch();
+    move(direction);
 }
