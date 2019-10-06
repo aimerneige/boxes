@@ -1,7 +1,7 @@
 /* Only Win Permitted */
 #include <stdio.h>
 #include <stdlib.h>
-// #include <conio.h>
+#include <conio.h>
 
 // #define WIDTH 8
 // #define HEIGHT 8
@@ -14,17 +14,15 @@ void moveLeft(void); // 向左移动
 void moveRight(void); // 向右移动
 void move(char direction); // 移动
 
-
-
 int map[8][8] = {
-    {0, 0, 1, 1, 1, 0, 0, 0},
-    {0, 0, 1, 4, 1, 0, 0, 0},
-    {0, 0, 1, 0, 1, 1, 1, 1},
-    {1, 1, 1, 3, 0, 3, 4, 1},
-    {1, 4, 0, 3, 2, 1, 1, 1},
-    {1, 1, 1, 1, 3, 1, 0, 0},
-    {0, 0, 0, 1, 4, 1, 0, 0},
-    {0, 0, 0, 1, 1, 1, 0, 0}
+        {0, 0, 1, 1, 1, 0, 0, 0},
+        {0, 0, 1, 4, 1, 0, 0, 0},
+        {0, 0, 1, 0, 1, 1, 1, 1},
+        {1, 1, 1, 3, 0, 3, 4, 1},
+        {1, 4, 0, 3, 2, 1, 1, 1},
+        {1, 1, 1, 1, 3, 1, 0, 0},
+        {0, 0, 0, 1, 4, 1, 0, 0},
+        {0, 0, 0, 1, 1, 1, 0, 0}
 }; // 可通过三维数组实现多关卡
 /**
  * 0 表示空
@@ -35,10 +33,10 @@ int map[8][8] = {
  * 5 表示已完成的箱子
  */
 
-int x;
-int y;
+int x = 0;
+int y = 0;
 
-int boxes;
+int boxes = 0;
 
 // int course = 1; // 可通过三维数组实现多关卡
 
@@ -49,7 +47,7 @@ int main()
     char direction;
     initData();
     printf("Press \"w a s d\" to move.\n");
-    // printf("Press wasd to move and press r to restart.\n");
+    // printf("Press \"w a s d\" to move and press r to restart.\n");
     drawMap();
     direction = getch();
     while ( boxes ) {
@@ -85,24 +83,24 @@ void drawMap(void)
             int temp = map[i][j];
             switch (temp) {
                 case 0:
-                    printf(" ");
+                    printf("  ");
                     break;
                 case 1:
-                    printf("█");
+                    printf("■");
                     break;
                 case 2:
-                    printf("☿");
+                    printf("♀");
                     break;
                 case 3:
-                    printf("●");
+                    printf("◆");
                     break;
                 case 4:
-                    printf("☆");
+                    printf("●");
                     break;
                 case 5:
                     printf("★");
                     break;
-                // default:
+                    // default:
                     // printf("Error Happens!\n");
                     // error = 1;
                     // return;
@@ -111,6 +109,14 @@ void drawMap(void)
         printf("\n");
     }
 } // Tested
+
+/** 移动时的可能
+ * 前面是墙
+ * 前面是空白
+ * 前面是箱子 -- 箱子前面是 '墙' '空白' '箱子' '目的地' '完成的箱子'
+ * 前面是目的地
+ * 前面是完成的箱子
+ */
 
 void moveUp(void)
 {
@@ -146,7 +152,7 @@ void move(char direction)
             break;
         case 'd':
             moveRight();
-            break; 
+            break;
         default:
             direction = getch();
             move(direction);
