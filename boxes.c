@@ -1,4 +1,7 @@
+/* Only Win Permitted */
 #include <stdio.h>
+#include <stdlib.h>
+// #include <conio.h>
 
 // #define WIDTH 8
 // #define HEIGHT 8
@@ -9,7 +12,7 @@ void moveUp(void); // 向上移动
 void moveDown(void); // 向下移动
 void moveLeft(void); // 向左移动
 void moveRight(void); // 向右移动
-// void move(char direction); // 移动
+void move(char direction); // 移动
 
 
 
@@ -51,6 +54,9 @@ int main()
     direction = getch();
     while ( boxes ) {
         move(direction);
+        system("cls");
+        drawMap();
+        direction = getch();
     }
     printf("You win!\n");
 
@@ -110,21 +116,39 @@ void moveUp(void)
 {
 
 }
+
 void moveDown(void)
 {
 
 }
+
 void moveLeft(void)
 {
 
 }
+
 void moveRight(void)
 {
 
 }
+
 void move(char direction)
 {
     switch (direction) {
-        case 'w'
+        case 'w':
+            moveUp();
+            break;
+        case 'a':
+            moveLeft();
+            break;
+        case 's':
+            moveDown();
+            break;
+        case 'd':
+            moveRight();
+            break; 
+        default:
+            direction = getch();
+            move(direction);
     }
 }
