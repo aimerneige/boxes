@@ -7,4 +7,4 @@ C语言写的推箱子小游戏
 
 由于VS的原因，采用GBK编码
 
-感谢[Easy_X](https://easyx.cn/)图形库提供的技术支持！
+感谢 [Easy_X](https://easyx.cn/) 图形库提供的技术支持！
