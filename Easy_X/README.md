@@ -1,4 +1,9 @@
-# About
+# Boxes with Easy_X
+
+使用 Easy_X 图形库构建的推箱子小游戏。
+
+图片关卡等资源均来源于网络，仅供学习交流使用。
+## About
 
 * 作者: `AimerNeige`
 * 项目名称: `推箱子`
