@@ -6,3 +6,10 @@
 * 编码: `GBK`
 * GitHub: `aimerneige`
 * Email: `aimer.neige.soft@email.com`
+
+## How to build
+
+- 下载安装 Visual Studio 2019 Professional
+- 下载并安装 Easy_X
+- 双击 `Box_AimerNeige.sln`
+- 等待 VS 将配置加载完成后，点击绿色三角形构建应用
