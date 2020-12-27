@@ -1,15 +1,17 @@
 # boxes
 
-C ����д��������С��Ϸ
+C 语言写的推箱子小游戏
 
-������ƻ����γ����
+程序设计基础课程设计
 
-`Terminal`�ļ�������֮ǰд�Ļ����ն˵ļ򵥳���
+仅供参考，请勿直接抄袭
 
-`Easy_X`�ļ����е��ǻ���Easy_X���´�����ͼ�ν�����Ϸ��֧�ֶ�ؿ�
+`Terminal`文件夹中是之前写的基于终端的简单程序
 
-`Document`�ļ����е�����Ŀ���˵����
+`Easy_X`文件夹中的是基于Easy_X重新创作的图形界面游戏，支持多关卡
 
-����VS��ԭ�򣬲���GBK����
+`Document`文件夹中的是项目设计说明书
 
-��л [Easy_X](https://easyx.cn/) ͼ�ο��ṩ�ļ���֧�֣�
+由于VS的原因，采用GBK编码
+
+感谢 [Easy_X](https://easyx.cn/) 图形库提供的技术支持！
