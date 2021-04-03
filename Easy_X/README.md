@@ -1,21 +1,21 @@
 # Boxes with Easy_X
 
-Ê¹ÓÃ Easy_X Í¼ĞÎ¿â¹¹½¨µÄÍÆÏä×ÓĞ¡ÓÎÏ·¡£
+ä½¿ç”¨ Easy_X å›¾å½¢åº“æ„å»ºçš„æ¨ç®±å­å°æ¸¸æˆã€‚
 
-Í¼Æ¬¹Ø¿¨µÈ×ÊÔ´¾ùÀ´Ô´ÓÚÍøÂç£¬½ö¹©Ñ§Ï°½»Á÷Ê¹ÓÃ¡£
+å›¾ç‰‡å…³å¡ç­‰èµ„æºå‡æ¥æºäºç½‘ç»œï¼Œä»…ä¾›å­¦ä¹ äº¤æµä½¿ç”¨ã€‚
 ## About
 
-* ×÷Õß: `AimerNeige`
-* ÏîÄ¿Ãû³Æ: `ÍÆÏä×Ó`
-* ¿ª·¢Èí¼ş: `VS2019×¨Òµ°æ`
-* Íâ²¿ÒÀÀµÏî: `Easy_X×îĞÂ°æ`
-* ±àÂë: `GBK`
+* ä½œè€…: `AimerNeige`
+* é¡¹ç›®åç§°: `æ¨ç®±å­`
+* å¼€å‘è½¯ä»¶: `VS2019ä¸“ä¸šç‰ˆ`
+* å¤–éƒ¨ä¾èµ–é¡¹: `Easy_Xæœ€æ–°ç‰ˆ`
+* ç¼–ç : `GBK`
 * GitHub: `aimerneige`
-* Email: `aimer.neige.soft@email.com`
+* Email: `aimer.neige.soft@gmail.com`
 
 ## How to build
 
-- ÏÂÔØ²¢°²×° [Visual Studio 2019 Professional](https://visualstudio.com)
-- ÏÂÔØ²¢°²×° [Easy_X](https://easyx.cn/)
-- Ë«»÷±¾ÎÄ¼ş¼ĞÏÂµÄ `Box_AimerNeige.sln`
-- µÈ´ı VS ½«ÅäÖÃ¼ÓÔØÍê³Éºó£¬µã»÷ÂÌÉ«Èı½ÇĞÎ¼´¿É¹¹½¨Ó¦ÓÃ
+- ä¸‹è½½å¹¶å®‰è£… [Visual Studio 2019 Professional](https://visualstudio.com)
+- ä¸‹è½½å¹¶å®‰è£… [Easy_X](https://easyx.cn/)
+- åŒå‡»æœ¬æ–‡ä»¶å¤¹ä¸‹çš„ `Box_AimerNeige.sln`
+- ç­‰å¾… VS å°†é…ç½®åŠ è½½å®Œæˆåï¼Œç‚¹å‡»ç»¿è‰²ä¸‰è§’å½¢å³å¯æ„å»ºåº”ç”¨
